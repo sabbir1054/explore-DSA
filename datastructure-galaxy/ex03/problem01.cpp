@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 void showElement(int arr[],int size){
     for (int i = 0; i < size; i++)
     {
@@ -10,7 +11,7 @@ void showElement(int arr[],int size){
 
 int main(int argc, char const *argv[])
 {
-     int size;
+    int size;
     cin >> size;
     int arr[size];
     for (int i = 0; i < size; i++)
@@ -21,24 +22,25 @@ int main(int argc, char const *argv[])
     //bubble sort
     for (int i = 1; i < size; i++)
     {
-        int flag = 0;
-        for (int j = 0; j < size-i; j++)
+        cout << "Iteration :" <<i<< endl;
+        for (int j = 0; j < size-1; j++)
         {
+            cout << "Step " << j + 1 << ": ";
+            showElement(arr, size);
             if (arr[j]>arr[j+1])
             {
                 swap(arr[j], arr[j+1]);
-                flag = 1;
-            }
+               
             
-        }
-          
-            if (flag=0)
-            {
-                break; 
             }
+            //  cout << " -> ";
+            //     showElement(arr, size);
+            cout << endl;
+        }
        
     }
 
-    showElement(arr,size);
+    // showElement(arr,size);
+
     return 0;
 }

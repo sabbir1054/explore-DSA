@@ -4,6 +4,7 @@
     "iostream": "cpp",
     "ratio": "cpp",
     "iomanip": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "new": "cpp"
   }
 }
