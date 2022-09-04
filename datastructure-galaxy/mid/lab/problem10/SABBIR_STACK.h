@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-template <typename N> class Node
+class Node
 {
 public:
     int value;
@@ -15,11 +15,11 @@ public:
     }
 };
 
-template <typename S>class Stack
+class Stack
 {
-    Node <S> *head;
-    Node <S> *top;
-    Node <S> *middle = NULL;
+    Node *head;
+    Node *top;
+    Node *middle = NULL;
     int count = 0;
 
 public:
@@ -31,7 +31,7 @@ public:
     // push
     void push(int val)
     {
-        Node <S> *newNode = new Node<S>(val);
+        Node *newNode = new Node(val);
 
         if (head == NULL)
         {
@@ -52,9 +52,9 @@ public:
     }
 
     // pop
-    S pop()
+    int pop()
     {
-        Node <S> *delNode;
+        Node *delNode;
         delNode = top;
         if (head == NULL)
         {
@@ -95,9 +95,9 @@ public:
     }
 
     // top
-    S Top()
+    int Top()
     {
-        S check;
+        int check;
         if (top == NULL)
         {
             cout << "There is no elements " << endl;
@@ -117,7 +117,7 @@ public:
     }
 
     // middle
-    S mid()
+    int mid()
     {
 
         if (count == 0)

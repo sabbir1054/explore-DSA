@@ -3,12 +3,12 @@
 using namespace std;
 int main(int argc, char const *argv[])
 {
-    Stack st;
-    st.push(1);
-    st.push(2);
-    st.push(5);
-    st.push(4);
-    st.push(3);
+    Stack <float> st;
+    st.push(13.5);
+    st.push(2.2);
+    st.push(54.2);
+    st.push(4.3);
+    st.push(3.8);
     
 
     cout << st.mid() << endl;
