@@ -15,6 +15,7 @@ public:
         rightChild = NULL;
     }
 };
+void level_order_reverse(queue<int> &Queue);
 
 void spacePrint(int level)
 {
@@ -94,25 +95,72 @@ void printTree(treeNode *root, int level)
     }
 }
 
-void mirror(treeNode *root)
+// level order traversal
+
+void levelOrder(treeNode *root)
 {
+    string check = "";
     if (root == NULL)
-        return;
-    else
     {
-        treeNode *temp;
-
-        /* do the subtrees */
-        mirror(root->leftChild);
-        mirror(root->rightChild);
-
-        /* swap the pointers in this node */
-        temp = root->leftChild;
-        root->leftChild = root->rightChild;
-        root->rightChild = temp;
+        /* code */
+        return;
     }
+    queue<treeNode *> q;
+    q.push(root);
+    q.push(NULL);
+
+    while (!q.empty())
+    {
+        treeNode *checkNode = q.front();
+        q.pop();
+        if (checkNode != NULL)
+        {
+            // cout << checkNode->data << " ";
+            check += (to_string(checkNode->data)) + " ";
+            if (checkNode->leftChild != NULL)
+            {
+                q.push(checkNode->leftChild);
+            }
+            if (checkNode->rightChild != NULL)
+            {
+                /* code */
+                q.push(checkNode->rightChild);
+            }
+        }
+        else
+        {
+            if (!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
+    }
+    // print level order
+    // cout << "LevelOrder :" << check;
+    
+}
+bool isMirror(treeNode *root1, treeNode *root2)
+{
+    // If both trees are empty, then they are mirror images
+    if (root1 == NULL && root2 == NULL)
+    {
+        return true;
+    }
+    if (root1 && root2 && root1->data == root2->data)
+    {
+        return isMirror(root1->leftChild, root2->rightChild) && isMirror(root1->rightChild, root2->leftChild);
+    }
+
+    return false;
 }
 
+bool isSymmetric(treeNode  *root)
+{
+    // Check if tree is mirror of itself
+    return isMirror(root, root);
+}
+
+// main function
 int main(int argc, char const *argv[])
 {
     int n;
@@ -145,27 +193,44 @@ int main(int argc, char const *argv[])
     string inOrderTraversal = "";
     string preOrderTraversal = "";
     string postOrderTraversal = "";
-    inOrder(allNodes[0], inOrderTraversal);
-    cout << endl
-         << "InOrder Traversal :" << inOrderTraversal << endl;
-    preOrder(allNodes[0], preOrderTraversal);
-    cout << endl
-         << "PreOrder Traversal :" << preOrderTraversal << endl;
-    postOrder(allNodes[0], postOrderTraversal);
-    cout << endl
-         << "PostOrder Traversal :" << postOrderTraversal << endl;
+    string levelOrderTraversal = "";
+    // inOrder(allNodes[0], inOrderTraversal);
+    // cout << endl
+    //      << "InOrder Traversal :" << inOrderTraversal << endl;
+    // preOrder(allNodes[0], preOrderTraversal);
+    // cout << endl
+    //      << "PreOrder Traversal :" << preOrderTraversal << endl;
+    // postOrder(allNodes[0], postOrderTraversal);
+    // cout << endl
+    //      << "PostOrder Traversal :" << postOrderTraversal << endl;
+    levelOrder(allNodes[0]);
+
+    if (isSymmetric(allNodes[0]))
+        cout << "Symmetric";
+    else
+        cout << "Not symmetric";
     return 0;
 }
-
 /*
 5
-1 3 2 
-3 -1 -1
-2 5 4
-5 -1 -1
-4 -1 -1
+3 9 20
+9 -1 -1
+20 15 7
+15 -1 -1
+7 -1 -1
 
+3 9 20
+9 -1 -1
+2 15 7
+15 -1 -1
+7 -1 -1
+5 7 8
+6 -1 -1
+7 -1 -1
+8 -1 -1
 
+ */
+/*
 9
 0 1 2
 1 3 4
@@ -177,6 +242,19 @@ int main(int argc, char const *argv[])
 7 -1 -1
 8 -1 -1
 
+3
+3 9 20
+9 -1 -1
+20 -1 -1
+
+
+
+
+4 -1 -1
+5 7 8
+6 -1 -1
+7 -1 -1
+8 -1 -1
 Root : 0
 Left :
         Root : 1

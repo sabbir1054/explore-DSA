@@ -94,25 +94,48 @@ void printTree(treeNode *root, int level)
     }
 }
 
-void mirror(treeNode *root)
+// level order traversal
+
+void levelOrder(treeNode *root, string &check)
 {
     if (root == NULL)
-        return;
-    else
     {
-        treeNode *temp;
+        /* code */
+        return;
+    }
+    queue<treeNode *> q;
+    q.push(root);
+    q.push(NULL);
 
-        /* do the subtrees */
-        mirror(root->leftChild);
-        mirror(root->rightChild);
-
-        /* swap the pointers in this node */
-        temp = root->leftChild;
-        root->leftChild = root->rightChild;
-        root->rightChild = temp;
+    while (!q.empty())
+    {
+        treeNode *checkNode = q.front();
+        q.pop();
+        if (checkNode != NULL)
+        {
+            // cout << checkNode->data << " ";
+            check += to_string(checkNode->data);
+            if (checkNode->leftChild != NULL)
+            {
+                q.push(checkNode->leftChild);
+            }
+            if (checkNode->rightChild != NULL)
+            {
+                /* code */
+                q.push(checkNode->rightChild);
+            }
+        }
+        else
+        {
+            if (!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
     }
 }
 
+// main function
 int main(int argc, char const *argv[])
 {
     int n;
@@ -145,27 +168,23 @@ int main(int argc, char const *argv[])
     string inOrderTraversal = "";
     string preOrderTraversal = "";
     string postOrderTraversal = "";
-    inOrder(allNodes[0], inOrderTraversal);
+    string levelOrderTraversal = "";
+    // inOrder(allNodes[0], inOrderTraversal);
+    // cout << endl
+    //      << "InOrder Traversal :" << inOrderTraversal << endl;
+    // preOrder(allNodes[0], preOrderTraversal);
+    // cout << endl
+    //      << "PreOrder Traversal :" << preOrderTraversal << endl;
+    // postOrder(allNodes[0], postOrderTraversal);
+    // cout << endl
+    //      << "PostOrder Traversal :" << postOrderTraversal << endl;
+    levelOrder(allNodes[0], levelOrderTraversal);
     cout << endl
-         << "InOrder Traversal :" << inOrderTraversal << endl;
-    preOrder(allNodes[0], preOrderTraversal);
-    cout << endl
-         << "PreOrder Traversal :" << preOrderTraversal << endl;
-    postOrder(allNodes[0], postOrderTraversal);
-    cout << endl
-         << "PostOrder Traversal :" << postOrderTraversal << endl;
+         << "Level order Traversal :" << levelOrderTraversal << endl;
     return 0;
 }
 
 /*
-5
-1 3 2 
-3 -1 -1
-2 5 4
-5 -1 -1
-4 -1 -1
-
-
 9
 0 1 2
 1 3 4
@@ -176,6 +195,7 @@ int main(int argc, char const *argv[])
 6 -1 -1
 7 -1 -1
 8 -1 -1
+
 
 Root : 0
 Left :
