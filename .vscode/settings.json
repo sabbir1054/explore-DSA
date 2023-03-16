@@ -5,6 +5,12 @@
     "ratio": "cpp",
     "iomanip": "cpp",
     "ostream": "cpp",
-    "new": "cpp"
+    "new": "cpp",
+    "*.tcc": "cpp",
+    "bitset": "cpp",
+    "random": "cpp",
+    "valarray": "cpp",
+    "limits": "cpp",
+    "regex": "cpp"
   }
 }
